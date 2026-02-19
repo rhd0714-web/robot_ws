@@ -1,0 +1,17 @@
+[1.450s] Invoking command in '/home/user/robot_ws/build/ah_bot_driver': PYTHONPATH=/home/user/robot_ws/build/ah_bot_driver/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/user/robot_ws/build/ah_bot_driver/build --no-deps symlink_data
+[1.730s] running develop
+[1.875s] running egg_info
+[1.875s] writing ah_bot_driver.egg-info/PKG-INFO
+[1.876s] writing dependency_links to ah_bot_driver.egg-info/dependency_links.txt
+[1.876s] writing entry points to ah_bot_driver.egg-info/entry_points.txt
+[1.876s] writing requirements to ah_bot_driver.egg-info/requires.txt
+[1.876s] writing top-level names to ah_bot_driver.egg-info/top_level.txt
+[1.879s] reading manifest file 'ah_bot_driver.egg-info/SOURCES.txt'
+[1.879s] writing manifest file 'ah_bot_driver.egg-info/SOURCES.txt'
+[1.881s] running build_ext
+[1.881s] Creating /home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages/ah-bot-driver.egg-link (link to .)
+[1.883s] Installing driver_node script to /home/user/robot_ws/install/ah_bot_driver/lib/ah_bot_driver
+[1.883s] 
+[1.883s] Installed /home/user/robot_ws/build/ah_bot_driver
+[1.883s] running symlink_data
+[1.943s] Invoked command in '/home/user/robot_ws/build/ah_bot_driver' returned '0': PYTHONPATH=/home/user/robot_ws/build/ah_bot_driver/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/user/robot_ws/build/ah_bot_driver/build --no-deps symlink_data

@@ -1,0 +1,17 @@
+[1.516s] Invoking command in '/home/user/robot_ws/build/ah_bot_mujoco': PYTHONPATH=/home/user/robot_ws/build/ah_bot_mujoco/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/robot_ws/install/ah_bot_mujoco/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/user/robot_ws/build/ah_bot_mujoco/build --no-deps symlink_data
+[1.822s] running develop
+[2.000s] running egg_info
+[2.001s] writing ah_bot_mujoco.egg-info/PKG-INFO
+[2.001s] writing dependency_links to ah_bot_mujoco.egg-info/dependency_links.txt
+[2.001s] writing entry points to ah_bot_mujoco.egg-info/entry_points.txt
+[2.002s] writing requirements to ah_bot_mujoco.egg-info/requires.txt
+[2.002s] writing top-level names to ah_bot_mujoco.egg-info/top_level.txt
+[2.004s] reading manifest file 'ah_bot_mujoco.egg-info/SOURCES.txt'
+[2.011s] writing manifest file 'ah_bot_mujoco.egg-info/SOURCES.txt'
+[2.013s] running build_ext
+[2.014s] Creating /home/user/robot_ws/install/ah_bot_mujoco/lib/python3.10/site-packages/ah-bot-mujoco.egg-link (link to .)
+[2.015s] Installing mujoco_node script to /home/user/robot_ws/install/ah_bot_mujoco/lib/ah_bot_mujoco
+[2.015s] 
+[2.015s] Installed /home/user/robot_ws/build/ah_bot_mujoco
+[2.015s] running symlink_data
+[2.079s] Invoked command in '/home/user/robot_ws/build/ah_bot_mujoco' returned '0': PYTHONPATH=/home/user/robot_ws/build/ah_bot_mujoco/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/robot_ws/install/ah_bot_mujoco/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/user/robot_ws/build/ah_bot_mujoco/build --no-deps symlink_data

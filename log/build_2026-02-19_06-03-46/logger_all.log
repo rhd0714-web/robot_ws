@@ -1,0 +1,496 @@
+[0.169s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'ah_bot_driver']
+[0.170s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['ah_bot_driver'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x713c61468c40>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x713c615e6200>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x713c615e6200>>, mixin_verb=('build',))
+[0.403s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.403s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.403s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.403s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.403s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.403s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.404s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/user/robot_ws'
+[0.404s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.404s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.404s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.404s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.404s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.404s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.404s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.405s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.405s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.425s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.425s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.425s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.425s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.425s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.425s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extensions ['ignore', 'ignore_ament_install']
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extension 'ignore'
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extension 'ignore_ament_install'
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extensions ['colcon_pkg']
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extension 'colcon_pkg'
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extensions ['colcon_meta']
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extension 'colcon_meta'
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extensions ['ros']
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extension 'ros'
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extensions ['cmake', 'python']
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extension 'cmake'
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extension 'python'
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extensions ['python_setup_py']
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main) by extension 'python_setup_py'
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extensions ['ignore', 'ignore_ament_install']
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extension 'ignore'
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extension 'ignore_ament_install'
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extensions ['colcon_pkg']
+[0.426s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extension 'colcon_pkg'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extensions ['colcon_meta']
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extension 'colcon_meta'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extensions ['ros']
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extension 'ros'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extensions ['cmake', 'python']
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extension 'cmake'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extension 'python'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extensions ['python_setup_py']
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/ArduinoExample) by extension 'python_setup_py'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extensions ['ignore', 'ignore_ament_install']
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extension 'ignore'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extension 'ignore_ament_install'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extensions ['colcon_pkg']
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extension 'colcon_pkg'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extensions ['colcon_meta']
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extension 'colcon_meta'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extensions ['ros']
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extension 'ros'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extensions ['cmake', 'python']
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extension 'cmake'
+[0.427s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extension 'python'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extensions ['python_setup_py']
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo) by extension 'python_setup_py'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extensions ['ignore', 'ignore_ament_install']
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extension 'ignore'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extension 'ignore_ament_install'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extensions ['colcon_pkg']
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extension 'colcon_pkg'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extensions ['colcon_meta']
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extension 'colcon_meta'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extensions ['ros']
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extension 'ros'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extensions ['cmake', 'python']
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extension 'cmake'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extension 'python'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extensions ['python_setup_py']
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl) by extension 'python_setup_py'
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extensions ['ignore', 'ignore_ament_install']
+[0.428s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extension 'ignore'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extension 'ignore_ament_install'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extensions ['colcon_pkg']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extension 'colcon_pkg'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extensions ['colcon_meta']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extension 'colcon_meta'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extensions ['ros']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extension 'ros'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extensions ['cmake', 'python']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extension 'cmake'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extension 'python'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extensions ['python_setup_py']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/config) by extension 'python_setup_py'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extensions ['ignore', 'ignore_ament_install']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extension 'ignore'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extension 'ignore_ament_install'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extensions ['colcon_pkg']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extension 'colcon_pkg'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extensions ['colcon_meta']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extension 'colcon_meta'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extensions ['ros']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extension 'ros'
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extensions ['cmake', 'python']
+[0.429s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extension 'cmake'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extension 'python'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extensions ['python_setup_py']
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src) by extension 'python_setup_py'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extensions ['ignore', 'ignore_ament_install']
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extension 'ignore'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extension 'ignore_ament_install'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extensions ['colcon_pkg']
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extension 'colcon_pkg'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extensions ['colcon_meta']
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extension 'colcon_meta'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extensions ['ros']
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extension 'ros'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extensions ['cmake', 'python']
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extension 'cmake'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extension 'python'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extensions ['python_setup_py']
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHControl/src/bin) by extension 'python_setup_py'
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extensions ['ignore', 'ignore_ament_install']
+[0.430s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extension 'ignore'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extension 'ignore_ament_install'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extensions ['colcon_pkg']
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extension 'colcon_pkg'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extensions ['colcon_meta']
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extension 'colcon_meta'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extensions ['ros']
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extension 'ros'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extensions ['cmake', 'python']
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extension 'cmake'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extension 'python'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extensions ['python_setup_py']
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation) by extension 'python_setup_py'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extensions ['ignore', 'ignore_ament_install']
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extension 'ignore'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extension 'ignore_ament_install'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extensions ['colcon_pkg']
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extension 'colcon_pkg'
+[0.431s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extensions ['colcon_meta']
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extension 'colcon_meta'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extensions ['ros']
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extension 'ros'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extensions ['cmake', 'python']
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extension 'cmake'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extension 'python'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extensions ['python_setup_py']
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation) by extension 'python_setup_py'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extensions ['ignore', 'ignore_ament_install']
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extension 'ignore'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extension 'ignore_ament_install'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extensions ['colcon_pkg']
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extension 'colcon_pkg'
+[0.432s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extensions ['colcon_meta']
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extension 'colcon_meta'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extensions ['ros']
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extension 'ros'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extensions ['cmake', 'python']
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extension 'cmake'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extension 'python'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extensions ['python_setup_py']
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left) by extension 'python_setup_py'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extensions ['ignore', 'ignore_ament_install']
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extension 'ignore'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extension 'ignore_ament_install'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extensions ['colcon_pkg']
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extension 'colcon_pkg'
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extensions ['colcon_meta']
+[0.433s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extension 'colcon_meta'
+[0.434s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extensions ['ros']
+[0.434s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extension 'ros'
+[0.434s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extensions ['cmake', 'python']
+[0.434s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extension 'cmake'
+[0.434s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extension 'python'
+[0.434s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extensions ['python_setup_py']
+[0.434s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf) by extension 'python_setup_py'
+[0.434s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extensions ['ignore', 'ignore_ament_install']
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extension 'ignore'
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extension 'ignore_ament_install'
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extensions ['colcon_pkg']
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extension 'colcon_pkg'
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extensions ['colcon_meta']
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extension 'colcon_meta'
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extensions ['ros']
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extension 'ros'
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extensions ['cmake', 'python']
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extension 'cmake'
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extension 'python'
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extensions ['python_setup_py']
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/assets) by extension 'python_setup_py'
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extensions ['ignore', 'ignore_ament_install']
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extension 'ignore'
+[0.435s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extension 'ignore_ament_install'
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extensions ['colcon_pkg']
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extension 'colcon_pkg'
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extensions ['colcon_meta']
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extension 'colcon_meta'
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extensions ['ros']
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extension 'ros'
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extensions ['cmake', 'python']
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extension 'cmake'
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extension 'python'
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extensions ['python_setup_py']
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right) by extension 'python_setup_py'
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extensions ['ignore', 'ignore_ament_install']
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extension 'ignore'
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extension 'ignore_ament_install'
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extensions ['colcon_pkg']
+[0.436s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extension 'colcon_pkg'
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extensions ['colcon_meta']
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extension 'colcon_meta'
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extensions ['ros']
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extension 'ros'
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extensions ['cmake', 'python']
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extension 'cmake'
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extension 'python'
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extensions ['python_setup_py']
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf) by extension 'python_setup_py'
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extensions ['ignore', 'ignore_ament_install']
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extension 'ignore'
+[0.437s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extension 'ignore_ament_install'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extensions ['colcon_pkg']
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extension 'colcon_pkg'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extensions ['colcon_meta']
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extension 'colcon_meta'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extensions ['ros']
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extension 'ros'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extensions ['cmake', 'python']
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extension 'cmake'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extension 'python'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extensions ['python_setup_py']
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Right/mjcf/assets) by extension 'python_setup_py'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extensions ['ignore', 'ignore_ament_install']
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extension 'ignore'
+[0.438s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extension 'ignore_ament_install'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extensions ['colcon_pkg']
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extension 'colcon_pkg'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extensions ['colcon_meta']
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extension 'colcon_meta'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extensions ['ros']
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extension 'ros'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extensions ['cmake', 'python']
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extension 'cmake'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extension 'python'
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extensions ['python_setup_py']
+[0.439s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/AHSimulation/examples) by extension 'python_setup_py'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extensions ['ignore', 'ignore_ament_install']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extension 'ignore'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extension 'ignore_ament_install'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extensions ['colcon_pkg']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extension 'colcon_pkg'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extensions ['colcon_meta']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extension 'colcon_meta'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extensions ['ros']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extension 'ros'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extensions ['cmake', 'python']
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extension 'cmake'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extension 'python'
+[0.440s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extensions ['python_setup_py']
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking) by extension 'python_setup_py'
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extensions ['ignore', 'ignore_ament_install']
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extension 'ignore'
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extension 'ignore_ament_install'
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extensions ['colcon_pkg']
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extension 'colcon_pkg'
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extensions ['colcon_meta']
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extension 'colcon_meta'
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extensions ['ros']
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extension 'ros'
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extensions ['cmake', 'python']
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extension 'cmake'
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extension 'python'
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extensions ['python_setup_py']
+[0.441s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/HandTracking/HandTracking) by extension 'python_setup_py'
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extensions ['ignore', 'ignore_ament_install']
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extension 'ignore'
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extension 'ignore_ament_install'
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extensions ['colcon_pkg']
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extension 'colcon_pkg'
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extensions ['colcon_meta']
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extension 'colcon_meta'
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extensions ['ros']
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extension 'ros'
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extensions ['cmake', 'python']
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extension 'cmake'
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extension 'python'
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extensions ['python_setup_py']
+[0.442s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/Demo/docs) by extension 'python_setup_py'
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extensions ['ignore', 'ignore_ament_install']
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extension 'ignore'
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extension 'ignore_ament_install'
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extensions ['colcon_pkg']
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extension 'colcon_pkg'
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extensions ['colcon_meta']
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extension 'colcon_meta'
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extensions ['ros']
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extension 'ros'
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extensions ['cmake', 'python']
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extension 'cmake'
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extension 'python'
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extensions ['python_setup_py']
+[0.443s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/PythonExample) by extension 'python_setup_py'
+[0.444s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extensions ['ignore', 'ignore_ament_install']
+[0.444s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extension 'ignore'
+[0.444s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extension 'ignore_ament_install'
+[0.444s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extensions ['colcon_pkg']
+[0.444s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extension 'colcon_pkg'
+[0.444s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extensions ['colcon_meta']
+[0.444s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extension 'colcon_meta'
+[0.444s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extensions ['ros']
+[0.444s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extension 'ros'
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extensions ['cmake', 'python']
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extension 'cmake'
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extension 'python'
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extensions ['python_setup_py']
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/assets) by extension 'python_setup_py'
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extensions ['ignore', 'ignore_ament_install']
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extension 'ignore'
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extension 'ignore_ament_install'
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extensions ['colcon_pkg']
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extension 'colcon_pkg'
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extensions ['colcon_meta']
+[0.445s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extension 'colcon_meta'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extensions ['ros']
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extension 'ros'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extensions ['cmake', 'python']
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extension 'cmake'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extension 'python'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extensions ['python_setup_py']
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad) by extension 'python_setup_py'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extensions ['ignore', 'ignore_ament_install']
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extension 'ignore'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extension 'ignore_ament_install'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extensions ['colcon_pkg']
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extension 'colcon_pkg'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extensions ['colcon_meta']
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extension 'colcon_meta'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extensions ['ros']
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extension 'ros'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extensions ['cmake', 'python']
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extension 'cmake'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extension 'python'
+[0.446s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extensions ['python_setup_py']
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/step) by extension 'python_setup_py'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extensions ['ignore', 'ignore_ament_install']
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extension 'ignore'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extension 'ignore_ament_install'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extensions ['colcon_pkg']
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extension 'colcon_pkg'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extensions ['colcon_meta']
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extension 'colcon_meta'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extensions ['ros']
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extension 'ros'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extensions ['cmake', 'python']
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extension 'cmake'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extension 'python'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extensions ['python_setup_py']
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/cad/stl) by extension 'python_setup_py'
+[0.447s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extensions ['ignore', 'ignore_ament_install']
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extension 'ignore'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extension 'ignore_ament_install'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extensions ['colcon_pkg']
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extension 'colcon_pkg'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extensions ['colcon_meta']
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extension 'colcon_meta'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extensions ['ros']
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extension 'ros'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extensions ['cmake', 'python']
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extension 'cmake'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extension 'python'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extensions ['python_setup_py']
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(AmazingHand-main/docs) by extension 'python_setup_py'
+[0.448s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.449s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.450s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_dashboard) by extensions ['ignore', 'ignore_ament_install']
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_dashboard) by extension 'ignore'
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_dashboard) by extension 'ignore_ament_install'
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_dashboard) by extensions ['colcon_pkg']
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_dashboard) by extension 'colcon_pkg'
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_dashboard) by extensions ['colcon_meta']
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_dashboard) by extension 'colcon_meta'
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_dashboard) by extensions ['ros']
+[0.451s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_dashboard) by extension 'ros'
+[0.455s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ah_bot_dashboard' with type 'ros.ament_python' and name 'ah_bot_dashboard'
+[0.455s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_driver) by extensions ['ignore', 'ignore_ament_install']
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_driver) by extension 'ignore'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_driver) by extension 'ignore_ament_install'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_driver) by extensions ['colcon_pkg']
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_driver) by extension 'colcon_pkg'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_driver) by extensions ['colcon_meta']
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_driver) by extension 'colcon_meta'
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_driver) by extensions ['ros']
+[0.456s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_driver) by extension 'ros'
+[0.457s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ah_bot_driver' with type 'ros.ament_python' and name 'ah_bot_driver'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_mujoco) by extensions ['ignore', 'ignore_ament_install']
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_mujoco) by extension 'ignore'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_mujoco) by extension 'ignore_ament_install'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_mujoco) by extensions ['colcon_pkg']
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_mujoco) by extension 'colcon_pkg'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_mujoco) by extensions ['colcon_meta']
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_mujoco) by extension 'colcon_meta'
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_mujoco) by extensions ['ros']
+[0.458s] Level 1:colcon.colcon_core.package_identification:_identify(src/ah_bot_mujoco) by extension 'ros'
+[0.459s] DEBUG:colcon.colcon_core.package_identification:Package 'src/ah_bot_mujoco' with type 'ros.ament_python' and name 'ah_bot_mujoco'
+[0.459s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.460s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.460s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.460s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.460s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.494s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'ah_bot_dashboard' in 'src/ah_bot_dashboard'
+[0.494s] INFO:colcon.colcon_core.package_selection:Skipping not selected package 'ah_bot_mujoco' in 'src/ah_bot_mujoco'
+[0.495s] Level 5:colcon.colcon_core.verb:set package 'ah_bot_driver' build argument 'cmake_args' from command line to 'None'
+[0.495s] Level 5:colcon.colcon_core.verb:set package 'ah_bot_driver' build argument 'cmake_target' from command line to 'None'
+[0.495s] Level 5:colcon.colcon_core.verb:set package 'ah_bot_driver' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.495s] Level 5:colcon.colcon_core.verb:set package 'ah_bot_driver' build argument 'cmake_clean_cache' from command line to 'False'
+[0.495s] Level 5:colcon.colcon_core.verb:set package 'ah_bot_driver' build argument 'cmake_clean_first' from command line to 'False'
+[0.495s] Level 5:colcon.colcon_core.verb:set package 'ah_bot_driver' build argument 'cmake_force_configure' from command line to 'False'
+[0.495s] Level 5:colcon.colcon_core.verb:set package 'ah_bot_driver' build argument 'ament_cmake_args' from command line to 'None'
+[0.495s] Level 5:colcon.colcon_core.verb:set package 'ah_bot_driver' build argument 'catkin_cmake_args' from command line to 'None'
+[0.495s] Level 5:colcon.colcon_core.verb:set package 'ah_bot_driver' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.495s] DEBUG:colcon.colcon_core.verb:Building package 'ah_bot_driver' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/user/robot_ws/build/ah_bot_driver', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/user/robot_ws/install/ah_bot_driver', 'merge_install': False, 'path': '/home/user/robot_ws/src/ah_bot_driver', 'symlink_install': False, 'test_result_base': None}
+[0.495s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.496s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.497s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/user/robot_ws/src/ah_bot_driver' with build type 'ament_python'
+[0.497s] Level 1:colcon.colcon_core.shell:create_environment_hook('ah_bot_driver', 'ament_prefix_path')
+[0.502s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.502s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver/hook/ament_prefix_path.ps1'
+[0.504s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver/hook/ament_prefix_path.dsv'
+[0.505s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver/hook/ament_prefix_path.sh'
+[0.507s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.507s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.901s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/user/robot_ws/src/ah_bot_driver'
+[0.902s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.902s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.459s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/user/robot_ws/src/ah_bot_driver': PYTHONPATH=/home/user/robot_ws/build/ah_bot_driver/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ah_bot_driver build --build-base /home/user/robot_ws/build/ah_bot_driver/build install --record /home/user/robot_ws/build/ah_bot_driver/install.log --single-version-externally-managed install_data
+[1.945s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/user/robot_ws/src/ah_bot_driver' returned '0': PYTHONPATH=/home/user/robot_ws/build/ah_bot_driver/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/ah_bot_driver build --build-base /home/user/robot_ws/build/ah_bot_driver/build install --record /home/user/robot_ws/build/ah_bot_driver/install.log --single-version-externally-managed install_data
+[1.949s] Level 1:colcon.colcon_core.environment:checking '/home/user/robot_ws/install/ah_bot_driver' for CMake module files
+[1.950s] Level 1:colcon.colcon_core.environment:checking '/home/user/robot_ws/install/ah_bot_driver' for CMake config files
+[1.953s] Level 1:colcon.colcon_core.environment:checking '/home/user/robot_ws/install/ah_bot_driver/lib'
+[1.954s] Level 1:colcon.colcon_core.environment:checking '/home/user/robot_ws/install/ah_bot_driver/bin'
+[1.954s] Level 1:colcon.colcon_core.environment:checking '/home/user/robot_ws/install/ah_bot_driver/lib/pkgconfig/ah_bot_driver.pc'
+[1.955s] Level 1:colcon.colcon_core.environment:checking '/home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages'
+[1.955s] Level 1:colcon.colcon_core.shell:create_environment_hook('ah_bot_driver', 'pythonpath')
+[1.955s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver/hook/pythonpath.ps1'
+[1.956s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver/hook/pythonpath.dsv'
+[1.957s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver/hook/pythonpath.sh'
+[1.958s] Level 1:colcon.colcon_core.environment:checking '/home/user/robot_ws/install/ah_bot_driver/bin'
+[1.958s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(ah_bot_driver)
+[1.959s] INFO:colcon.colcon_core.shell:Creating package script '/home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver/package.ps1'
+[1.960s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver/package.dsv'
+[1.962s] INFO:colcon.colcon_core.shell:Creating package script '/home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver/package.sh'
+[1.963s] INFO:colcon.colcon_core.shell:Creating package script '/home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver/package.bash'
+[1.964s] INFO:colcon.colcon_core.shell:Creating package script '/home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver/package.zsh'
+[1.966s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/user/robot_ws/install/ah_bot_driver/share/colcon-core/packages/ah_bot_driver)
+[1.966s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.967s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.967s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.967s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.997s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[1.997s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.997s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.997s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[2.001s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.Spawn.ExecFailed: /usr/bin/dbus-launch terminated abnormally without any error message
+[2.001s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[2.002s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/user/robot_ws/install/local_setup.ps1'
+[2.005s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/user/robot_ws/install/_local_setup_util_ps1.py'
+[2.007s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/user/robot_ws/install/setup.ps1'
+[2.009s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/user/robot_ws/install/local_setup.sh'
+[2.010s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/user/robot_ws/install/_local_setup_util_sh.py'
+[2.011s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/user/robot_ws/install/setup.sh'
+[2.012s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/user/robot_ws/install/local_setup.bash'
+[2.013s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/user/robot_ws/install/setup.bash'
+[2.014s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/user/robot_ws/install/local_setup.zsh'
+[2.015s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/user/robot_ws/install/setup.zsh'

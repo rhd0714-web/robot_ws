@@ -1,0 +1,3 @@
+[console_scripts]
+mujoco_node = ah_bot_mujoco.mujoco_node:main
+

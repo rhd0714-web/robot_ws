@@ -1,0 +1,19 @@
+[1.291s] Invoking command in '/home/user/robot_ws/build/ah_bot_dashboard': PYTHONPATH=/home/user/robot_ws/build/ah_bot_dashboard/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/robot_ws/install/ah_bot_dashboard/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/user/robot_ws/build/ah_bot_dashboard/build --no-deps symlink_data
+[1.578s] running develop
+[1.730s] running egg_info
+[1.730s] writing ah_bot_dashboard.egg-info/PKG-INFO
+[1.730s] writing dependency_links to ah_bot_dashboard.egg-info/dependency_links.txt
+[1.730s] writing entry points to ah_bot_dashboard.egg-info/entry_points.txt
+[1.730s] writing requirements to ah_bot_dashboard.egg-info/requires.txt
+[1.730s] writing top-level names to ah_bot_dashboard.egg-info/top_level.txt
+[1.732s] reading manifest file 'ah_bot_dashboard.egg-info/SOURCES.txt'
+[1.739s] writing manifest file 'ah_bot_dashboard.egg-info/SOURCES.txt'
+[1.741s] running build_ext
+[1.741s] Creating /home/user/robot_ws/install/ah_bot_dashboard/lib/python3.10/site-packages/ah-bot-dashboard.egg-link (link to .)
+[1.742s] Installing controller script to /home/user/robot_ws/install/ah_bot_dashboard/lib/ah_bot_dashboard
+[1.742s] Installing dashboard script to /home/user/robot_ws/install/ah_bot_dashboard/lib/ah_bot_dashboard
+[1.742s] Installing vision_node script to /home/user/robot_ws/install/ah_bot_dashboard/lib/ah_bot_dashboard
+[1.743s] 
+[1.743s] Installed /home/user/robot_ws/build/ah_bot_dashboard
+[1.743s] running symlink_data
+[1.788s] Invoked command in '/home/user/robot_ws/build/ah_bot_dashboard' returned '0': PYTHONPATH=/home/user/robot_ws/build/ah_bot_dashboard/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/robot_ws/install/ah_bot_dashboard/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/user/robot_ws/build/ah_bot_dashboard/build --no-deps symlink_data

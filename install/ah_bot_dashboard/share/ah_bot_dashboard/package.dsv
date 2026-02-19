@@ -1,0 +1,9 @@
+source;share/ah_bot_dashboard/hook/pythonpath.ps1
+source;share/ah_bot_dashboard/hook/pythonpath.dsv
+source;share/ah_bot_dashboard/hook/pythonpath.sh
+source;share/ah_bot_dashboard/hook/ament_prefix_path.ps1
+source;share/ah_bot_dashboard/hook/ament_prefix_path.dsv
+source;share/ah_bot_dashboard/hook/ament_prefix_path.sh
+source;../../build/ah_bot_dashboard/share/ah_bot_dashboard/hook/pythonpath_develop.ps1
+source;../../build/ah_bot_dashboard/share/ah_bot_dashboard/hook/pythonpath_develop.dsv
+source;../../build/ah_bot_dashboard/share/ah_bot_dashboard/hook/pythonpath_develop.sh

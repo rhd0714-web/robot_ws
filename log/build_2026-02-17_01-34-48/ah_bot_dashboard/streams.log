@@ -1,0 +1,26 @@
+[1.215s] Invoking command in '/home/user/robot_ws/build/ah_bot_dashboard': PYTHONPATH=/home/user/robot_ws/build/ah_bot_dashboard/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/robot_ws/install/ah_bot_dashboard/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/user/robot_ws/build/ah_bot_dashboard/build --no-deps symlink_data
+[1.468s] running develop
+[1.623s] running egg_info
+[1.623s] creating ah_bot_dashboard.egg-info
+[1.623s] writing ah_bot_dashboard.egg-info/PKG-INFO
+[1.624s] writing dependency_links to ah_bot_dashboard.egg-info/dependency_links.txt
+[1.624s] writing entry points to ah_bot_dashboard.egg-info/entry_points.txt
+[1.624s] writing requirements to ah_bot_dashboard.egg-info/requires.txt
+[1.624s] writing top-level names to ah_bot_dashboard.egg-info/top_level.txt
+[1.624s] writing manifest file 'ah_bot_dashboard.egg-info/SOURCES.txt'
+[1.628s] reading manifest file 'ah_bot_dashboard.egg-info/SOURCES.txt'
+[1.629s] writing manifest file 'ah_bot_dashboard.egg-info/SOURCES.txt'
+[1.632s] running build_ext
+[1.632s] Creating /home/user/robot_ws/install/ah_bot_dashboard/lib/python3.10/site-packages/ah-bot-dashboard.egg-link (link to .)
+[1.633s] Installing controller script to /home/user/robot_ws/install/ah_bot_dashboard/lib/ah_bot_dashboard
+[1.634s] Installing dashboard script to /home/user/robot_ws/install/ah_bot_dashboard/lib/ah_bot_dashboard
+[1.634s] Installing vision_node script to /home/user/robot_ws/install/ah_bot_dashboard/lib/ah_bot_dashboard
+[1.634s] 
+[1.634s] Installed /home/user/robot_ws/build/ah_bot_dashboard
+[1.635s] running symlink_data
+[1.635s] creating /home/user/robot_ws/install/ah_bot_dashboard/share/ament_index
+[1.635s] creating /home/user/robot_ws/install/ah_bot_dashboard/share/ament_index/resource_index
+[1.635s] creating /home/user/robot_ws/install/ah_bot_dashboard/share/ament_index/resource_index/packages
+[1.635s] symbolically linking /home/user/robot_ws/build/ah_bot_dashboard/resource/ah_bot_dashboard -> /home/user/robot_ws/install/ah_bot_dashboard/share/ament_index/resource_index/packages
+[1.635s] symbolically linking /home/user/robot_ws/build/ah_bot_dashboard/package.xml -> /home/user/robot_ws/install/ah_bot_dashboard/share/ah_bot_dashboard
+[1.687s] Invoked command in '/home/user/robot_ws/build/ah_bot_dashboard' returned '0': PYTHONPATH=/home/user/robot_ws/build/ah_bot_dashboard/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/robot_ws/install/ah_bot_dashboard/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/user/robot_ws/build/ah_bot_dashboard/build --no-deps symlink_data

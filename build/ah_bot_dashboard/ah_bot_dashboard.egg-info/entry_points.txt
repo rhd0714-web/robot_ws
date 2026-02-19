@@ -1,0 +1,5 @@
+[console_scripts]
+controller = ah_bot_dashboard.controller_node:main
+dashboard = ah_bot_dashboard.dashboard:main
+vision_node = ah_bot_dashboard.vision_node:main
+

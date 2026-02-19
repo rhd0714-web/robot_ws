@@ -1,0 +1,32 @@
+running develop
+Removing /home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages/ah-bot-driver.egg-link (link to .)
+running egg_info
+writing ../../build/ah_bot_driver/ah_bot_driver.egg-info/PKG-INFO
+writing dependency_links to ../../build/ah_bot_driver/ah_bot_driver.egg-info/dependency_links.txt
+writing entry points to ../../build/ah_bot_driver/ah_bot_driver.egg-info/entry_points.txt
+writing requirements to ../../build/ah_bot_driver/ah_bot_driver.egg-info/requires.txt
+writing top-level names to ../../build/ah_bot_driver/ah_bot_driver.egg-info/top_level.txt
+reading manifest file '../../build/ah_bot_driver/ah_bot_driver.egg-info/SOURCES.txt'
+writing manifest file '../../build/ah_bot_driver/ah_bot_driver.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/user/robot_ws/build/ah_bot_driver/build
+creating /home/user/robot_ws/build/ah_bot_driver/build/lib
+creating /home/user/robot_ws/build/ah_bot_driver/build/lib/ah_bot_driver
+copying ah_bot_driver/__init__.py -> /home/user/robot_ws/build/ah_bot_driver/build/lib/ah_bot_driver
+copying ah_bot_driver/driver_node.py -> /home/user/robot_ws/build/ah_bot_driver/build/lib/ah_bot_driver
+running install
+running install_lib
+creating /home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages/ah_bot_driver
+copying /home/user/robot_ws/build/ah_bot_driver/build/lib/ah_bot_driver/__init__.py -> /home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages/ah_bot_driver
+copying /home/user/robot_ws/build/ah_bot_driver/build/lib/ah_bot_driver/driver_node.py -> /home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages/ah_bot_driver
+byte-compiling /home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages/ah_bot_driver/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages/ah_bot_driver/driver_node.py to driver_node.cpython-310.pyc
+running install_data
+copying resource/ah_bot_driver -> /home/user/robot_ws/install/ah_bot_driver/share/ament_index/resource_index/packages
+copying package.xml -> /home/user/robot_ws/install/ah_bot_driver/share/ah_bot_driver
+running install_egg_info
+Copying ../../build/ah_bot_driver/ah_bot_driver.egg-info to /home/user/robot_ws/install/ah_bot_driver/lib/python3.10/site-packages/ah_bot_driver-0.0.0-py3.10.egg-info
+running install_scripts
+Installing driver_node script to /home/user/robot_ws/install/ah_bot_driver/lib/ah_bot_driver
+writing list of installed files to '/home/user/robot_ws/build/ah_bot_driver/install.log'
