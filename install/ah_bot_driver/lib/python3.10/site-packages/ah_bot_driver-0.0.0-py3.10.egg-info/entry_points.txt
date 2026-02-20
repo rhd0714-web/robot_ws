@@ -1,3 +1,0 @@
-[console_scripts]
-driver_node = ah_bot_driver.driver_node:main
-
