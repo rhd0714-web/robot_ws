@@ -64,7 +64,7 @@ class Finger:
         self.prev_angle = curr_angle
 
         norm_bend = np.interp(curr_ratio, self.bend_range, [0.0, 1.0])
-        if self.idx == 3: norm_side = np.interp(curr_angle, self.spread_range, [0.0, 1.0])
+        if self.idx == 3: norm_side = np.interp(curr_angle, self.spread_range, [1.0, 0.0])
         else: norm_side = np.interp(curr_angle, self.spread_range, [-1.0, 1.0])
 
         return norm_bend, norm_side
