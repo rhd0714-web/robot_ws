@@ -62,8 +62,9 @@ class RobotHandDriver(Node):
             # 3. 방향 보정 (하드웨어/시뮬레이션 축 일치)
             # 검지(0), 중지(1), 약지(2)는 좌우 대칭 구조일 수 있음.
             # 움직임을 보고 반대면 부호를 바꾸세요. (현재: 기본)
-            #if i == 0: target_side = target_side 
-            #if i == 2: target_side = target_side 
+            if i == 0: target_side = -target_side 
+            if i == 1: target_side = -target_side 
+            if i == 2: target_side = -target_side 
 
             # 4. [핵심] 차동 구동 믹싱 (Differential Drive Mixing)
             # AmazingHand 공식: 
