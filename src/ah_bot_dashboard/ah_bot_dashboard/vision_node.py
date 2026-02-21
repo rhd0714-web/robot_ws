@@ -12,10 +12,11 @@ FINGER_BEND_RANGES = {
     0: [0.77, 1.76], 1: [0.72, 1.86], 2: [0.63, 1.83], 3: [0.53, 1.01],
 }
 FINGER_SPREAD_RANGES = {
-    0: [-10, 25], 1: [-10, 10], 2: [-20, 10], 3: [20,  60],
+    0: [-4, 10], 1: [-4, 4], 2: [-10, 0], 3: [16,  25],
 }
 MP_TIPS = [8, 12, 16, 4]
 MP_MCPS = [5, 9, 13, 1]
+MP_PIPS = [6, 10, 14, 2]
 
 def get_distance(p1, p2):
     return math.sqrt((p1.x - p2.x)**2 + (p1.y - p2.y)**2)
@@ -52,9 +53,9 @@ class Finger:
         curr_ratio = dist / palm_size
 
         if self.idx == 3:
-            curr_angle = abs(get_signed_angle(wrist, landmarks.landmark[5], wrist, tip))
+            curr_angle = abs(get_signed_angle(wrist, landmarks.landmark[5], wrist, pip))
         else:
-            curr_angle = get_signed_angle(wrist, mid_mcp, mcp, tip)
+            curr_angle = get_signed_angle(wrist, mid_mcp, mcp, pip)
 
         if abs(curr_ratio - self.prev_ratio) < self.DEADBAND_RATIO: curr_ratio = self.prev_ratio
         if abs(curr_angle - self.prev_angle) < self.DEADBAND_ANGLE: curr_angle = self.prev_angle
