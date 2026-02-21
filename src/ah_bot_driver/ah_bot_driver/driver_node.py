@@ -20,7 +20,7 @@ class RobotHandDriver(Node):
         # - 약 90도 ~ 100도: 주먹 쥔 상태 (Bend)
         # - 약 0도: 쫙 편 상태 (Flat)
         # 따라서 입력 0(주먹) -> 100도 / 입력 1(펴짐) -> 0도로 매핑합니다.
-        self.RANGE_BEND = [100.0, 0.0]   
+        self.RANGE_BEND = [100.0, -30.0]   
         
         # 좌우 벌림 범위 (Degree)
         self.RANGE_SIDE = [-20.0, 20.0] 
