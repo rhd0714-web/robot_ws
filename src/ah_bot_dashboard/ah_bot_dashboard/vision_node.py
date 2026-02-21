@@ -44,6 +44,7 @@ class Finger:
     def process(self, wrist, mid_mcp, landmarks, palm_size):
         tip = landmarks.landmark[MP_TIPS[self.idx]]
         mcp = landmarks.landmark[MP_MCPS[self.idx]]
+        pip = landmarks.landmark[MP_PIPS[self.idx]]
         pinky_mcp = landmarks.landmark[17]
 
         if self.idx == 3: dist = get_distance(tip, pinky_mcp)

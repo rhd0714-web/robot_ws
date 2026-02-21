@@ -7,88 +7,77 @@ class RobotHandDriver(Node):
     def __init__(self):
         super().__init__('ah_bot_driver')
         
-        # Vision에서 0~1 값을 받음
         self.sub = self.create_subscription(Float32MultiArray, '/hand_control', self.callback, 10)
-        # MuJoCo로 라디안 값을 보냄
         self.pub = self.create_publisher(Float64MultiArray, '/joint_commands', 10)
 
-        # [전문가 설정] 시뮬레이션 모드 여부
-        # True: 시뮬레이션용 (안전장치 해제, 부드러운 움직임 위주)
-        # False: 실물 로봇용 (와이어 끊어짐 방지 안전장치 활성화)
+        # -------------------------------------------------------------------
+        # [최적화 1] 시뮬레이션 전용 설정 (Simulation Mode)
+        # -------------------------------------------------------------------
         self.SIM_MODE = True 
 
-        # [설정] AmazingHand 하드웨어 스펙
-        # MuJoCo 모델에 맞춰 범위 조정 (Degree)
-        self.RANGE_BEND = [0.0, 90.0]   # [펴짐, 굽힘] 
-        self.RANGE_SIDE = [-30.0, 30.0] # [좌, 우]
+        # [최적화 2] 매핑 범위 수정 (Vision 데이터: 0=주먹, 1=펴짐)
+        # AmazingHand 시뮬레이션 상:
+        # - 약 90도 ~ 100도: 주먹 쥔 상태 (Bend)
+        # - 약 0도: 쫙 편 상태 (Flat)
+        # 따라서 입력 0(주먹) -> 100도 / 입력 1(펴짐) -> 0도로 매핑합니다.
+        self.RANGE_BEND = [100.0, 0.0]   
+        
+        # 좌우 벌림 범위 (Degree)
+        self.RANGE_SIDE = [-20.0, 20.0] 
 
-        # 모터 오프셋 (순서: 검지M1,M2, 중지M1,M2, 약지M1,M2, 엄지M1,M2)
-        # 필요하다면 나중에 이 값을 튜닝해서 초기 자세를 잡으세요.
-        self.MOTOR_OFFSETS = [
-            0.0, 0.0,    # 검지
-            0.0, 0.0,    # 중지
-            0.0, 0.0,    # 약지
-            0.0, 0.0     # 엄지
-        ]
+        # [최적화 3] 오프셋 제거
+        # MuJoCo는 조립 오차가 없는 완벽한 환경이므로 실물 오프셋을 0으로 둡니다.
+        self.MOTOR_OFFSETS = [0.0] * 8
 
-        # 스무딩(LPF)을 위한 이전 값 저장
-        self.prev_motor = np.zeros(8) 
-        self.FILTER_ALPHA = 0.2  # 0.0 ~ 1.0 (클수록 빠르지만 떨림 심함)
+        # 스무딩 필터 (0.0 ~ 1.0) - 떨림 방지
+        self.FILTER_ALPHA = 0.15
+        
+        # 초기값 설정 (로봇이 켜질 때 확 튀는 것 방지)
+        # 시작 시 '펴짐(1.0)' 상태인 0도로 초기화
+        self.prev_motor = np.zeros(8)
 
-        self.get_logger().info('🧠 Driver Node Ready: Physics Logic Loaded')
+        self.get_logger().info('🧠 Driver Node Optimized for MuJoCo')
 
     def callback(self, msg):
-        inputs = msg.data # [B0, S0, B1, S1, B2, S2, B3, S3] (0.0 ~ 1.0)
+        inputs = msg.data # [B, S, B, S, ...]
         if len(inputs) != 8: return
 
-        joint_commands = [] # MuJoCo로 보낼 8개 모터 값 (radian)
+        joint_commands = [] 
 
         for i in range(4):
-            # 1. 입력값 파싱
-            in_bend_ratio = inputs[i*2]   # 0.0 ~ 1.0
-            in_side_ratio = inputs[i*2+1] # -1.0 ~ 1.0 (엄지는 0~1)
+            # 1. Vision 데이터 수신 (0=주먹, 1=펴짐)
+            in_bend = inputs[i*2]
+            in_side = inputs[i*2+1]
 
             # 2. 각도 변환 (Mapping)
-            # 0~1 입력을 실제 로봇 각도(Degree)로 변환
-            target_bend = np.interp(in_bend_ratio, [0.0, 1.0], self.RANGE_BEND)
+            # 0(주먹) -> 100도, 1(펴짐) -> 0도
+            target_bend = np.interp(in_bend, [0.0, 1.0], self.RANGE_BEND)
             
-            # 좌우 각도 변환
+            # Side 매핑 (엄지와 나머지 구분)
             if i == 3: # 엄지
-                target_side_raw = np.interp(in_side_ratio, [0.0, 1.0], [0, 60])
+                target_side = np.interp(in_side, [0.0, 1.0], [0, 45])
             else:      # 검지, 중지, 약지
-                target_side_raw = np.interp(in_side_ratio, [-1.0, 1.0], self.RANGE_SIDE)
+                target_side = np.interp(in_side, [-1.0, 1.0], self.RANGE_SIDE)
 
-            # 3. 로직 적용 (안전장치 및 방향 보정)
-            target_side = target_side_raw
+            # 3. 방향 보정 (하드웨어/시뮬레이션 축 일치)
+            # 검지(0), 중지(1), 약지(2)는 좌우 대칭 구조일 수 있음.
+            # 움직임을 보고 반대면 부호를 바꾸세요. (현재: 기본)
+            if i == 0: target_side = -target_side 
+            if i == 2: target_side = -target_side 
 
-            # 엄지가 아닌 손가락들(검지, 중지, 약지)에 대한 처리
-            if i != 3:
-                # (1) 방향 보정 (하드웨어 특성에 따라 반전)
-                if i == 0: target_side = -target_side # 검지 반전
-                if i == 1: target_side = -target_side # 중지 반전
-                if i == 2: target_side = -target_side # 약지 반전
-
-                # (2) 안전장치 (SIM_MODE가 아닐 때만 작동)
-                if not self.SIM_MODE:
-                    # 굽힘이 심하면 좌우 움직임 제한 (와이어 이탈 방지)
-                    if in_bend_ratio > 0.4:
-                        target_side = 0.0
-
-            # 4. 모터 믹싱 (Mixing) - AmazingHand의 차동 구동 핵심
-            # M1 = Side + Bend
-            # M2 = Side - Bend
-            # (움직임이 반대라면 여기서 부호를 바꾸면 됩니다)
+            # 4. [핵심] 차동 구동 믹싱 (Differential Drive Mixing)
+            # AmazingHand 공식: 
+            # Motor1 = Side - Bend
+            # Motor2 = Side + Bend
+            # (또는 반대일 수 있음. 만약 굽혔는데 벌어지면 부호를 반대로!)
+            
+            # 시뮬레이션 테스트 기반 추천 수식:
+            # 굽힘(Bend)이 주된 동작이므로 Bend가 양쪽 모터에 서로 반대로 작용해야 함.
             m1_val = target_side + target_bend
-            m2_val = -target_side + target_bend
+            m2_val = target_side - target_bend
 
-            # 5. 오프셋 적용
-            m1_val += self.MOTOR_OFFSETS[i*2]
-            m2_val += self.MOTOR_OFFSETS[i*2+1]
-
-            # 6. 스무딩 및 최종 저장 (LPF)
-            # 이전 모터 값 가져오기
-            idx_m1 = i * 2
-            idx_m2 = i * 2 + 1
+            # 5. 스무딩 (LPF)
+            idx_m1, idx_m2 = i*2, i*2+1
             
             smooth_m1 = (self.prev_motor[idx_m1] * (1 - self.FILTER_ALPHA)) + (m1_val * self.FILTER_ALPHA)
             smooth_m2 = (self.prev_motor[idx_m2] * (1 - self.FILTER_ALPHA)) + (m2_val * self.FILTER_ALPHA)
@@ -96,7 +85,7 @@ class RobotHandDriver(Node):
             self.prev_motor[idx_m1] = smooth_m1
             self.prev_motor[idx_m2] = smooth_m2
 
-            # 7. 최종 변환 (Degree -> Radian for MuJoCo)
+            # 6. 전송 (Degree -> Radian)
             joint_commands.append(np.deg2rad(smooth_m1))
             joint_commands.append(np.deg2rad(smooth_m2))
 
@@ -107,14 +96,13 @@ class RobotHandDriver(Node):
 
 def main():
     rclpy.init()
+    node = RobotHandDriver()
     try:
-        node = RobotHandDriver()
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
     finally:
-        if 'node' in locals():
-            node.destroy_node()
+        node.destroy_node()
         rclpy.shutdown()
 
 if __name__ == '__main__':
