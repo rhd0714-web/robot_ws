@@ -9,7 +9,7 @@ import time
 import threading
 
 # XML 경로 (사용자님 환경에 맞춤)
-XML_PATH = "/home/user/robot_ws/AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/robot.xml"
+XML_PATH = "/home/user/robot_ws/AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/scene.xml"
 
 class MujocoNode(Node):
     def __init__(self):
