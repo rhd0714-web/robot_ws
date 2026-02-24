@@ -5,132 +5,18 @@ driver:
   filter_alpha: 0.15
   fingers:
     index:
-      invert_side: true
-      motor1_offset: 0.0
-      motor2_offset: 0.0
-    middle:
-      invert_side: true
-      motor1_offset: 0.0
-      motor2_offset: 0.0
-    ring:
-      invert_side: true
-      motor1_offset: 0.0# ============================================================
-# AmazingHand 로봇 제어 설정 파일
-# ============================================================
-
-# 실행 모드: simulation / hardware / both
-mode: both
-
-# -----------------------------------------------------------
-# Vision Node 설정
-# -----------------------------------------------------------
-vision:
-  camera_index: 0
-  frame_width: 640
-  frame_height: 480
-  fps: 30
-  mediapipe_model_complexity: 0
-  min_detection_confidence: 0.7
-  min_tracking_confidence: 0.5
-  deadband_bend: 0.002
-  deadband_side: 0.002
-
-  # world_landmarks 기반 캘리브레이션 (단위: 미터)
-  # hand_calib.py 실행하면 자동으로 이 값이 업데이트됨
-  # vision_node는 5초마다 이 값을 자동으로 리로드함 (재시작 불필요)
-  fingers:
-    index:
-      bend_range: [-0.01, 0.08]
-      spread_range: [-0.03, 0.03]
-    middle:
-      bend_range: [-0.01, 0.09]
-      spread_range: [-0.02, 0.02]
-    ring:
-      bend_range: [-0.01, 0.08]
-      spread_range: [-0.03, 0.03]
-    thumb:
-      bend_range: [0.00, 0.07]
-      spread_range: [-0.04, 0.04]
-
-# -----------------------------------------------------------
-# Driver Node 설정
-# -----------------------------------------------------------
-driver:
-  filter_alpha: 0.15
-  bend_range_deg: [100.0, -30.0]
-  side_range_deg: [-20.0, 20.0]
-  thumb_side_range_deg: [0.0, 45.0]
-
-  fingers:
-    index:
-      motor1_offset: 0.0
-      motor2_offset: 0.0
-      invert_side: true
-    middle:
-      motor1_offset: 0.0
-      motor2_offset: 0.0
-      invert_side: true
-    ring:
-      motor1_offset: 0.0
-      motor2_offset: 0.0
-      invert_side: true
-    thumb:
-      motor1_offset: 0.0
-      motor2_offset: 0.0
       invert_side: false
-
-# -----------------------------------------------------------
-# MuJoCo 시뮬레이션 설정
-# -----------------------------------------------------------
-mujoco:
-  xml_path: "/home/user/robot_ws/AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/robot.xml"
-  target_fps: 60
-
-# -----------------------------------------------------------
-# 하드웨어 설정 (SCS0009 / Feetech Protocol V1)
-# -----------------------------------------------------------
-hardware:
-  serial_port: "/dev/ttyACM0"
-  baudrate: 1000000
-  on_connect_fail: warn
-  timeout_ms: 10
-  angle_limit_min: -150.0
-  angle_limit_max: 150.0
-
-  motors:
-    - finger: index
-      motor1_id: 1
-      motor1_offset_rad: 0.12217304763960307
-      motor1_invert: false
-      motor2_id: 2
-      motor2_offset_rad: 0.08726646259971647
-      motor2_invert: false
-
-    - finger: middle
-      motor1_id: 3
-      motor1_offset_rad: 0.0
-      motor1_invert: false
-      motor2_id: 4
-      motor2_offset_rad: 0.12217304763960307
-      motor2_invert: false
-
-    - finger: ring
-      motor1_id: 5
-      motor1_offset_rad: 0.08726646259971647
-      motor1_invert: false
-      motor2_id: 6
-      motor2_offset_rad: 0.12217304763960307
-      motor2_invert: false
-
-    - finger: thumb
-      motor1_id: 7
-      motor1_offset_rad: 0.0
-      motor1_invert: false
-      motor2_id: 8
-      motor2_offset_rad: 0.12217304763960307
-      motor2_invert: false
+      motor1_offset: 0.0
       motor2_offset: 0.0
-      thumb:
+    middle:
+      invert_side: false
+      motor1_offset: 0.0
+      motor2_offset: 0.0
+    ring:
+      invert_side: true
+      motor1_offset: 0.0
+      motor2_offset: 0.0
+    thumb:
       invert_side: false
       motor1_offset: 0.0
       motor2_offset: 0.0
@@ -187,33 +73,32 @@ vision:
   fingers:
     index:
       bend_range:
-      - 0.71
-      - 1.71
+      - -0.0351
+      - 0.064
       spread_range:
-      - -3.6
-      - 8.7
+      - -0.0449
+      - 0.0005
     middle:
       bend_range:
-      - 0.683
-      - 1.399
+      - -0.0315
+      - 0.0741
       spread_range:
-      - -18
-      - 5
+      - -0.0432
+      - -0.012
     ring:
       bend_range:
-      - 0.602
-      - 1.843
+      - -0.0321
+      - 0.0688
       spread_range:
-      - -7
-      - 6
-      - 0.03
+      - -0.0363
+      - -0.0101
     thumb:
       bend_range:
-      - 0.417
-      - 0.919
+      - 0.0498
+      - 0.0612
       spread_range:
-      - 27
-      - 47
+      - -0.0223
+      - -0.0108
   fps: 30
   frame_height: 480
   frame_width: 640
