@@ -61,6 +61,8 @@ RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 RUN echo "source /home/user/robot_ws/install/setup.bash" >> ~/.bashrc
 # 컬러 출력 등 편의 설정 (선택사항)
 RUN echo "export RCUTILS_COLORIZED_OUTPUT=1" >> ~/.bashrc
+# 'cb' 매크로(단축키)
+RUN echo 'alias cb="colcon build --symlink-install && source install/setup.bash"' >> ~/.bashrc
 
 # 7. 작업 폴더 설정
 WORKDIR /home/$USERNAME/robot_ws
