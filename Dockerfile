@@ -30,7 +30,8 @@ RUN pip3 install \
     "protobuf==3.20.3" \
     mujoco \
     transforms3d \
-    PyQt6
+    PyQt6 \
+    pyserial
 
 # 4. 사용자(User) 생성 (ID: 1000)
 # 리눅스끼리는 파일 권한이 꼬일 수 있어서, 내 컴퓨터 유저랑 ID를 맞추는 게 중요합니다.

@@ -1,143 +1,271 @@
+"""
+hand_calib.py — 자동 안정화 캘리브레이션 툴
+
+개선사항:
+  - 손이 정지했을 때만 샘플 수집 (흔들림 제거)
+  - 200개 샘플 모이면 자동 저장 (median 사용, 이상치 제거)
+  - 단계별 안내 (1단계: 손 펴기 → 2단계: 주먹 쥐기 → 자동 완료)
+  - [R] 키로 현재 단계 재측정 가능
+"""
+
 import cv2
 import mediapipe as mp
-import math
+import numpy as np
+import yaml
+import os
+from collections import deque
 
-# 미디어파이프 설정
-mp_hands = mp.solutions.hands
-mp_drawing = mp.solutions.drawing_utils
+SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
+CONFIG_PATH = os.path.join(SCRIPT_DIR, 'config', 'config.yaml')
 
-# 랜드마크 인덱스
-MP_TIPS = [8, 12, 16, 4]  # 검지, 중지, 약지, 엄지 끝
-MP_MCPS = [5, 9, 13, 1]   # 각 손가락 뿌리
-MP_PIPS = [6, 10, 14, 2]  # 각 손가락 중간 관절 
+mp_hands          = mp.solutions.hands
+mp_drawing        = mp.solutions.drawing_utils
+mp_drawing_styles = mp.solutions.drawing_styles
 
-def get_distance(p1, p2):
-    return math.sqrt((p1.x - p2.x)**2 + (p1.y - p2.y)**2)
+MP_TIPS      = [8, 12, 16, 4]
+MP_MCPS      = [5,  9, 13, 1]
+FINGER_NAMES = ["Index", "Middle", "Ring", "Thumb"]
+FINGER_KEYS  = ["index", "middle", "ring", "thumb"]
 
-# [추가됨] 각도 계산 함수 (Vision Node와 동일 로직)
-def get_signed_angle(wrist, mid_mcp, finger_mcp, finger_tip):
-    # 벡터 1: 손바닥 중심 축 (손목 -> 중지 뿌리)
-    v1_x = mid_mcp.x - wrist.x
-    v1_y = mid_mcp.y - wrist.y
-    
-    # 벡터 2: 손가락 방향 (손가락 뿌리 -> 손가락 끝)
-    v2_x = finger_tip.x - finger_mcp.x
-    v2_y = finger_tip.y - finger_mcp.y
-    
-    # 아크탄젠트로 각도 계산
-    ang1 = math.atan2(v1_y, v1_x)
-    ang2 = math.atan2(v2_y, v2_x)
-    
-    # 차이값 (Degree 변환)
-    diff = math.degrees(ang2 - ang1)
-    
-    # -180 ~ 180도로 정규화
-    if diff > 180: diff -= 360
-    elif diff < -180: diff += 360
-    return diff
+STABILITY_WINDOW = 10
+STABILITY_THRESH = 0.003  # 이 이하로 떨림 없으면 "정지"
+REQUIRED_SAMPLES = 200    # 이만큼 쌓이면 자동 완료
+
+
+def build_palm_frame(lm_world):
+    wrist     = np.array([lm_world.landmark[0].x,
+                          lm_world.landmark[0].y,
+                          lm_world.landmark[0].z])
+    mid_mcp   = np.array([lm_world.landmark[9].x,
+                          lm_world.landmark[9].y,
+                          lm_world.landmark[9].z])
+    pinky_mcp = np.array([lm_world.landmark[17].x,
+                          lm_world.landmark[17].y,
+                          lm_world.landmark[17].z])
+    unit_z = mid_mcp - wrist
+    n = np.linalg.norm(unit_z)
+    if n < 1e-6: return np.eye(3)
+    unit_z /= n
+    unit_x = np.cross(pinky_mcp - wrist, unit_z)
+    n = np.linalg.norm(unit_x)
+    if n < 1e-6: return np.eye(3)
+    unit_x /= n
+    unit_y = np.cross(unit_z, unit_x)
+    return np.array([unit_x, unit_y, unit_z])
+
+
+def get_finger_vectors(lm_world, R):
+    vecs = []
+    for i in range(4):
+        tip   = lm_world.landmark[MP_TIPS[i]]
+        mcp   = lm_world.landmark[MP_MCPS[i]]
+        v     = np.array([tip.x - mcp.x, tip.y - mcp.y, tip.z - mcp.z])
+        local = R @ v
+        vecs.append((float(local[2]), float(local[0])))
+    return vecs
+
+
+class StabilityDetector:
+    """
+    최근 N프레임 bend 값 변화량이 임계값 이하면 "정지" 판정.
+    진동 감쇠 후 정상상태(steady-state) 판별과 동일한 개념.
+    """
+    def __init__(self):
+        self.history = deque(maxlen=STABILITY_WINDOW)
+
+    def update(self, vecs):
+        self.history.append(vecs[0][0])  # 검지 bend로 대표
+
+    def is_stable(self):
+        if len(self.history) < STABILITY_WINDOW:
+            return False
+        return (max(self.history) - min(self.history)) < STABILITY_THRESH
+
+    def reset(self):
+        self.history.clear()
+
+
+def save_to_config(open_bends, open_sides, fist_bends, fist_sides):
+    if os.path.exists(CONFIG_PATH):
+        with open(CONFIG_PATH, 'r') as f:
+            cfg = yaml.safe_load(f) or {}
+    else:
+        cfg = {}
+        os.makedirs(os.path.dirname(CONFIG_PATH), exist_ok=True)
+
+    if 'vision' not in cfg:
+        cfg['vision'] = {}
+    cfg['vision']['fingers'] = {}
+
+    print("\n✅ 캘리브레이션 결과:")
+    for i, key in enumerate(FINGER_KEYS):
+        fist_b = float(np.median(fist_bends[i]))
+        open_b = float(np.median(open_bends[i]))
+        open_s = float(np.median(open_sides[i]))
+        fist_s = float(np.median(fist_sides[i]))
+
+        margin_b = abs(open_b - fist_b) * 0.05
+        margin_s = max(abs(open_s - fist_s) * 0.05, 0.005)
+
+        bend_range   = [round(fist_b - margin_b, 4),
+                        round(open_b + margin_b, 4)]
+        spread_range = [round(min(open_s, fist_s) - margin_s, 4),
+                        round(max(open_s, fist_s) + margin_s, 4)]
+
+        cfg['vision']['fingers'][key] = {
+            'bend_range'  : bend_range,
+            'spread_range': spread_range,
+        }
+        print(f"  [{FINGER_NAMES[i]:<8}] bend={bend_range}  spread={spread_range}")
+
+    with open(CONFIG_PATH, 'w') as f:
+        yaml.dump(cfg, f, default_flow_style=False, allow_unicode=True)
+    print(f"\n  저장 완료: {CONFIG_PATH}")
+
+
+def draw_ui(frame, stage, vecs, is_stable, count):
+    h, w = frame.shape[:2]
+    cv2.rectangle(frame, (0, 0), (w, 95), (20, 20, 20), -1)
+
+    stage_info = {
+        1: ("1단계: 손을 완전히 펴고 고정하세요",  (0, 200, 100)),
+        2: ("2단계: 주먹을 완전히 쥐고 고정하세요", (0, 120, 255)),
+        3: ("✅ 완료! config.yaml 저장됨",          (0, 220, 220)),
+    }
+    text, color = stage_info.get(stage, ("", (255, 255, 255)))
+    cv2.putText(frame, text, (12, 30),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.72, color, 2)
+
+    # 안정성
+    stab_text  = "✅ 정지 감지 — 측정 중" if is_stable else "⏳ 손을 고정해주세요..."
+    stab_color = (0, 220, 100) if is_stable else (120, 120, 120)
+    cv2.putText(frame, stab_text, (12, 56),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.55, stab_color, 1)
+
+    # 진행바
+    bar_w  = w - 24
+    filled = int(bar_w * min(count / REQUIRED_SAMPLES, 1.0))
+    cv2.rectangle(frame, (12, 66), (12 + bar_w, 80), (50, 50, 50), -1)
+    cv2.rectangle(frame, (12, 66), (12 + filled, 80), (0, 188, 212), -1)
+    cv2.putText(frame, f"{count}/{REQUIRED_SAMPLES}", (w - 100, 79),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.44, (180, 180, 180), 1)
+
+    # 수치
+    if vecs:
+        cv2.putText(frame, "[R]=재측정  [Q]=종료",
+                    (12, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.42, (100, 100, 100), 1)
+        y = 124
+        cv2.putText(frame, "         bend_z     side_x",
+                    (12, y), cv2.FONT_HERSHEY_SIMPLEX, 0.44, (130, 130, 130), 1)
+        y += 20
+        for name, (bz, sx) in zip(FINGER_NAMES, vecs):
+            col = (200, 230, 255) if is_stable else (100, 100, 100)
+            cv2.putText(frame, f"{name:<8}  {bz:+.4f}   {sx:+.4f}",
+                        (12, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, col, 1)
+            y += 22
+
 
 def main():
+    print("=" * 50)
+    print("  🖐  AH Bot 자동 캘리브레이션")
+    print("=" * 50)
+    print("  1단계: 손 완전히 펴기 → 정지하면 자동 측정")
+    print("  2단계: 주먹 완전히 쥐기 → 정지하면 자동 측정")
+    print("  각 자세 200샘플 모이면 자동으로 다음 단계 진행")
+    print("  [R] 현재 단계 재측정  [Q] 종료")
+    print()
+
     cap = cv2.VideoCapture(0)
-    # 해상도 설정 (글자 잘 보이게)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
-    
-    print("========================================")
-    print("🖐️  FULL HAND CALIBRATION TOOL")
-    print("========================================")
-    print("[Bend] 주먹 쥐기 vs 손 펴기 (Ratio)")
-    print("[Side] 손가락 좌우로 벌리기 (Angle)")
-    print("----------------------------------------")
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
+
+    stability = StabilityDetector()
+    samples = {
+        1: {'bend': [[] for _ in range(4)], 'side': [[] for _ in range(4)]},
+        2: {'bend': [[] for _ in range(4)], 'side': [[] for _ in range(4)]},
+    }
+    stage = 1
 
     with mp_hands.Hands(
         max_num_hands=1,
         min_detection_confidence=0.7,
-        min_tracking_confidence=0.5
+        min_tracking_confidence=0.5,
+        model_complexity=0
     ) as hands:
-        
+
         while cap.isOpened():
             ret, frame = cap.read()
-            if not ret: break
+            if not ret:
+                break
 
             frame = cv2.flip(frame, 1)
-            rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            rgb   = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            rgb.flags.writeable = False
             results = hands.process(rgb)
-            
-            if results.multi_hand_landmarks:
-                for hand_landmarks in results.multi_hand_landmarks:
-                    mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
-                    
-                    wrist = hand_landmarks.landmark[0]
-                    mid_mcp = hand_landmarks.landmark[9] # 중지 뿌리 (기준점)
-                    
-                    palm_size = get_distance(wrist, mid_mcp)
-                    
-                    finger_names = ["Index ", "Middle", "Ring  ", "Thumb "]
-                    
-                    # 헤더 출력
-                    cv2.putText(frame, "FINGER |  BEND(Ratio)  |  SIDE(Angle)", (10, 30), 
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2)
+            rgb.flags.writeable = True
 
-                    text_y = 70
-                    
+            vecs      = None
+            is_stable = False
+
+            if (results.multi_hand_landmarks
+                    and results.multi_hand_world_landmarks):
+
+                hand_lm       = results.multi_hand_landmarks[0]
+                hand_world_lm = results.multi_hand_world_landmarks[0]
+
+                mp_drawing.draw_landmarks(
+                    frame, hand_lm, mp_hands.HAND_CONNECTIONS,
+                    mp_drawing_styles.get_default_hand_landmarks_style(),
+                    mp_drawing_styles.get_default_hand_connections_style())
+
+                R         = build_palm_frame(hand_world_lm)
+                vecs      = get_finger_vectors(hand_world_lm, R)
+                stability.update(vecs)
+                is_stable = stability.is_stable()
+
+                if is_stable and stage in (1, 2):
                     for i in range(4):
-                        tip = hand_landmarks.landmark[MP_TIPS[i]]
-                        mcp = hand_landmarks.landmark[MP_MCPS[i]]
-                        pip = hand_landmarks.landmark[MP_PIPS[i]]
-                        pinky_mcp = hand_landmarks.landmark[17]
+                        samples[stage]['bend'][i].append(vecs[i][0])
+                        samples[stage]['side'][i].append(vecs[i][1])
 
-                        # ---------------------------
-                        # 1. Bend (Ratio) 계산
-                        # ---------------------------
-                        if i == 3: # 엄지
-                            curr_dist = get_distance(tip, pinky_mcp)
-                            curr_palm = get_distance(wrist, hand_landmarks.landmark[5])
+                    count = len(samples[stage]['bend'][0])
+                    if count >= REQUIRED_SAMPLES:
+                        if stage == 1:
+                            print(f"✅ 1단계 완료 ({count}샘플) — 이제 주먹을 쥐세요!")
+                            stage = 2
+                            stability.reset()
                         else:
-                            curr_dist = get_distance(tip, wrist)
-                            curr_palm = palm_size
-                        
-                        if curr_palm == 0: ratio = 0
-                        else: ratio = curr_dist / curr_palm
+                            print(f"✅ 2단계 완료 ({count}샘플)")
+                            stage = 3
+                            save_to_config(
+                                samples[1]['bend'], samples[1]['side'],
+                                samples[2]['bend'], samples[2]['side']
+                            )
+                            draw_ui(frame, 3, vecs, True, REQUIRED_SAMPLES)
+                            cv2.imshow("Hand Calibration", frame)
+                            cv2.waitKey(2500)
+                            break
 
-                        # ---------------------------
-                        # 2. Side (Angle) 계산
-                        # ---------------------------
-                        if i == 3: # 엄지
-                            # 엄지는 (손목->검지뿌리) 축과 (손목->엄지끝)의 각도
-                            angle = abs(get_signed_angle(wrist, hand_landmarks.landmark[5], wrist, pip))
-                        else:
-                            # 나머지는 (손목->중지뿌리) 축과 (뿌리->끝)의 각도
-                            angle = get_signed_angle(wrist, mid_mcp, mcp, pip)
-                        
-                        # ---------------------------
-                        # 화면 출력
-                        # ---------------------------
-                        # Bend 색상 (초록: 펴짐 / 빨강: 굽힘)
-                        color_bend = (0, 255, 0) if ratio > 1.2 else (0, 0, 255)
-                        
-                        # Side 색상 (파랑: 평범 / 보라: 많이 벌어짐)
-                        color_side = (255, 255, 0)
-                        if abs(angle) > 15: color_side = (255, 0, 255)
+            count = len(samples[stage]['bend'][0]) if stage in (1, 2) else REQUIRED_SAMPLES
+            draw_ui(frame, stage, vecs, is_stable, count)
+            cv2.imshow("Hand Calibration", frame)
 
-                        # 텍스트 포맷팅
-                        # 예: Index :  1.532   |   -5.4 deg
-                        info_text = f"{finger_names[i]} : {ratio:.3f}   |  {angle:.1f} deg"
-                        
-                        cv2.putText(frame, info_text, (10, text_y), 
-                                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
-                        
-                        # 수치 옆에 색상 표시용 원 그리기
-                        cv2.circle(frame, (280, text_y-10), 8, color_bend, -1)
-                        cv2.circle(frame, (450, text_y-10), 8, color_side, -1)
-                        
-                        text_y += 50
-
-            cv2.imshow("Full Hand Calibration", frame)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
+            key = cv2.waitKey(1) & 0xFF
+            if key == ord('q'):
+                print("⚠️  중단. 저장 안 됨.")
                 break
-    
+            elif key in (ord('r'), ord('R')):
+                if stage in (1, 2):
+                    samples[stage] = {
+                        'bend': [[] for _ in range(4)],
+                        'side': [[] for _ in range(4)]
+                    }
+                    stability.reset()
+                    print(f"🔄 {stage}단계 초기화. 다시 측정하세요.")
+
     cap.release()
     cv2.destroyAllWindows()
+
 
 if __name__ == '__main__':
     main()
