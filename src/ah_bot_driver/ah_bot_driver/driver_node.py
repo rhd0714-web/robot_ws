@@ -232,7 +232,8 @@ class RobotHandDriver(Node):
         self.get_logger().info(f"🚀 실행 모드: {self.mode}")
 
         driver_cfg            = cfg.get('driver', {})
-        self.FILTER_ALPHA     = driver_cfg.get('filter_alpha', 0.15)
+        self.FILTER_ALPHA     = driver_cfg.get('filter_alpha', 0.08)
+        self.OUTPUT_DEADBAND  = driver_cfg.get('output_deadband_deg', 1.5)
         self.RANGE_BEND       = driver_cfg.get('bend_range_deg', [100.0, -30.0])
         self.RANGE_SIDE       = driver_cfg.get('side_range_deg', [-20.0, 20.0])
         self.RANGE_THUMB_SIDE = driver_cfg.get('thumb_side_range_deg', [0.0, 45.0])
@@ -247,7 +248,11 @@ class RobotHandDriver(Node):
             self.motor2_offsets.append(fcfg.get('motor2_offset', 0.0))
             self.invert_sides.append(fcfg.get('invert_side', False))
 
-        self.prev_motor = np.zeros(8)
+        self.prev_smooth = np.zeros(8)
+
+        # 출력 데드밴드용 — 마지막으로 실제 전송한 값
+        self.last_sent    = np.zeros(8)
+        self.last_sent[:] = 9999.0   # 첫 프레임은 반드시 전송
 
         # 하드웨어 인터페이스
         self.hw = None
@@ -275,7 +280,6 @@ class RobotHandDriver(Node):
             self.get_logger().warn(f"⚠️  예상 8개, 수신 {len(inputs)}개.")
             return
 
-        joint_commands_rad = []
         joint_commands_deg = []
 
         for i in range(4):
@@ -297,18 +301,22 @@ class RobotHandDriver(Node):
             m2_val = target_side - target_bend + self.motor2_offsets[i]
 
             idx_m1, idx_m2 = i * 2, i * 2 + 1
-            smooth_m1 = (self.prev_motor[idx_m1] * (1 - self.FILTER_ALPHA)
+            smooth_m1 = (self.prev_smooth[idx_m1] * (1 - self.FILTER_ALPHA)
                          + m1_val * self.FILTER_ALPHA)
-            smooth_m2 = (self.prev_motor[idx_m2] * (1 - self.FILTER_ALPHA)
+            smooth_m2 = (self.prev_smooth[idx_m2] * (1 - self.FILTER_ALPHA)
                          + m2_val * self.FILTER_ALPHA)
-            self.prev_motor[idx_m1] = smooth_m1
-            self.prev_motor[idx_m2] = smooth_m2
+            self.prev_smooth[idx_m1] = smooth_m1
+            self.prev_smooth[idx_m2] = smooth_m2
 
             joint_commands_deg.extend([smooth_m1, smooth_m2])
-            joint_commands_rad.extend([
-                np.deg2rad(smooth_m1),
-                np.deg2rad(smooth_m2)
-            ])
+
+        # 출력 데드밴드: 전체 8개 중 최대 변화량이 임계값 이하면 전송 생략
+        diff = np.abs(np.array(joint_commands_deg) - self.last_sent)
+        if np.max(diff) < self.OUTPUT_DEADBAND:
+            return
+
+        self.last_sent = np.array(joint_commands_deg)
+        joint_commands_rad = [np.deg2rad(d) for d in joint_commands_deg]
 
         if self.sim_pub:
             out_msg = Float64MultiArray()

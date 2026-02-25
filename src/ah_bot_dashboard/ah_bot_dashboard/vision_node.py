@@ -68,41 +68,6 @@ def load_calib_from_config(config_path: str):
     return bend_ranges, spread_ranges
 
 
-def build_palm_frame(landmarks_world):
-    """
-    손바닥 좌표계(Palm Frame) 생성.
-    카메라 각도/거리 무관하게 손가락 움직임을 일관되게 측정.
-
-    z축: 손목 → 중지 뿌리 (손가락 뻗는 방향)
-    x축: 손바닥 법선 방향
-    y축: 손가락 좌우 방향
-    """
-    wrist     = np.array([landmarks_world.landmark[0].x,
-                          landmarks_world.landmark[0].y,
-                          landmarks_world.landmark[0].z])
-    mid_mcp   = np.array([landmarks_world.landmark[9].x,
-                          landmarks_world.landmark[9].y,
-                          landmarks_world.landmark[9].z])
-    pinky_mcp = np.array([landmarks_world.landmark[17].x,
-                          landmarks_world.landmark[17].y,
-                          landmarks_world.landmark[17].z])
-
-    unit_z = mid_mcp - wrist
-    n = np.linalg.norm(unit_z)
-    if n < 1e-6:
-        return np.eye(3)
-    unit_z /= n
-
-    unit_x = np.cross(pinky_mcp - wrist, unit_z)
-    n = np.linalg.norm(unit_x)
-    if n < 1e-6:
-        return np.eye(3)
-    unit_x /= n
-
-    unit_y = np.cross(unit_z, unit_x)
-    return np.array([unit_x, unit_y, unit_z])
-
-
 class Finger:
     def __init__(self, idx, bend_range, spread_range):
         self.idx          = idx
@@ -206,7 +171,50 @@ class VisionNode(Node):
         self.fps_timer   = self.get_clock().now()
         self.current_fps = 0.0
 
+        # Palm Frame 특이점 발생 시 재사용할 이전 프레임 저장
+        self.prev_R = np.eye(3)
+
         self.get_logger().info("📷 Vision Node Started [world_landmarks mode]")
+
+    def build_palm_frame(self, landmarks_world):
+        """
+        손바닥 좌표계(Palm Frame) 생성.
+        카메라 각도/거리 무관하게 손가락 움직임을 일관되게 측정.
+
+        z축: 손목 → 중지 뿌리 (손가락 뻗는 방향)
+        x축: 손바닥 법선 방향
+        y축: 손가락 좌우 방향
+
+        특이점 발생 시 이전 프레임(prev_R)을 재사용하여 급격한 튐 방지.
+        """
+        wrist     = np.array([landmarks_world.landmark[0].x,
+                              landmarks_world.landmark[0].y,
+                              landmarks_world.landmark[0].z])
+        mid_mcp   = np.array([landmarks_world.landmark[9].x,
+                              landmarks_world.landmark[9].y,
+                              landmarks_world.landmark[9].z])
+        pinky_mcp = np.array([landmarks_world.landmark[17].x,
+                              landmarks_world.landmark[17].y,
+                              landmarks_world.landmark[17].z])
+
+        vec_z  = mid_mcp - wrist
+        norm_z = np.linalg.norm(vec_z)
+        if norm_z < 1e-6:
+            self.get_logger().warn("⚠️ Palm Frame z축 특이점 — 이전 프레임 유지")
+            return self.prev_R
+        unit_z = vec_z / norm_z
+
+        cross  = np.cross(pinky_mcp - wrist, unit_z)
+        norm_x = np.linalg.norm(cross)
+        if norm_x < 1e-6:
+            self.get_logger().warn("⚠️ Palm Frame x축 특이점 — 이전 프레임 유지")
+            return self.prev_R
+        unit_x = cross / norm_x
+
+        unit_y = np.cross(unit_z, unit_x)
+        R = np.array([unit_x, unit_y, unit_z])
+        self.prev_R = R
+        return R
 
     def reload_config(self):
         """
@@ -266,7 +274,7 @@ class VisionNode(Node):
                     self.mp_drawing_styles.get_default_hand_landmarks_style(),
                     self.mp_drawing_styles.get_default_hand_connections_style())
 
-                R = build_palm_frame(hand_world_lm)
+                R = self.build_palm_frame(hand_world_lm)
 
                 for finger in self.fingers:
                     b, s = finger.process(R, hand_world_lm)

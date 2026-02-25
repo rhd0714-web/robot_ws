@@ -2,7 +2,8 @@ driver:
   bend_range_deg:
   - 100.0
   - -30.0
-  filter_alpha: 0.15
+  filter_alpha: 0.2
+  output_deadband_deg: 1.5
   fingers:
     index:
       invert_side: false
@@ -65,7 +66,7 @@ hardware:
 mode: both
 mujoco:
   target_fps: 60
-  xml_path: /home/user/robot_ws/AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/robot.xml
+  xml_path: /home/user/robot_ws/AmazingHand-main/Demo/AHSimulation/AHSimulation/AH_Left/mjcf/scene.xml
 vision:
   camera_index: 0
   deadband_bend: 0.002
@@ -94,11 +95,11 @@ vision:
       - -0.0101
     thumb:
       bend_range:
-      - 0.0498
-      - 0.0612
+      - 0.00
+      - 0.10
       spread_range:
-      - -0.0223
-      - -0.0108
+      - -0.05
+      - 0.05
   fps: 30
   frame_height: 480
   frame_width: 640
